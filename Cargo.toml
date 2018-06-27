@@ -1,5 +1,5 @@
 [package]
-name = "hw1"
+name = "calc"
 version = "0.1.0"
 authors = ["Brandon Bauley <bbauley@pdx.edu>"]
 
