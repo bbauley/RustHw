@@ -9,7 +9,6 @@ fn invalid_length_exception() {
 }
 
 fn main() {
-
 	let mut numbers = Vec::new();
 	let length = env::args().len();
 	let operation = env::args().nth(1);
@@ -20,14 +19,12 @@ fn main() {
 	}
 	for arg in env::args().skip(2)	//Need to ignore first two arguments
 	{
-    	numbers.push(u64::from_str(&arg)
-			 .expect("error parsing argument"));	
+    numbers.push(u64::from_str(&arg)
+			.expect("error parsing argument"));	
 	}
 	if numbers.len() == 1
 	{
 		println!("{}", numbers[0]);
 		process::exit(0);
 	}
-	
-	
 }
