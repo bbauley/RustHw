@@ -131,3 +131,37 @@ fn test_sum() {
 	assert_eq!(sum(&var), 60);
 }
 
+#[test]
+fn test_product() {
+	let mut var = Vec::new();
+	var.push(10);
+	var.push(20);
+	assert_eq!(product(&var), 200);
+	var.push(10);
+	assert_eq!(product(&var), 2000);
+}
+
+#[test]
+fn test_gcd_wrapper() {
+	let mut var = Vec::new();
+	var.push(10);
+	var.push(12);
+	var.push(14);
+	assert_eq!(gcd_wrapper(&var), 2);
+	var.pop();
+	var.pop();
+	var.push(100);
+	assert_eq!(gcd_wrapper(&var), 10);
+}
+
+#[test]
+fn test_lcm() {
+	let mut var = Vec::new();
+	var.push(2);
+	var.push(4);
+	var.push(6);
+	assert_eq!(lcm(&var), 12);
+	var.pop();
+	assert_eq!(lcm(&var), 4);
+}
+
