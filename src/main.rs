@@ -39,8 +39,13 @@ fn product(numbers: &Vec<u64>) -> u64 {
 
 //Returns the greatest common divisor from a vector of integers
 fn gcd_wrapper(numbers: &Vec<u64>) -> u64 {
+	let length = numbers.len();
+	assert!(length != 0);
+	if length == 1 {
+		numbers[0];
+	}
 	let mut result = gcd(numbers[0], numbers[1]);
-	for i in 2..numbers.len() {
+	for i in 2..length {
 		if result == 0 {
 			break;
 		}
@@ -65,13 +70,18 @@ fn gcd(mut n: u64, mut m: u64) -> u64 {
 
 //Returns the least common multiple of all integers in a vector
 fn lcm(numbers: &Vec<u64>) -> u64 {
+	let length = numbers.len();
+	assert!(length != 0);
+	if length == 1 {
+		numbers[0];
+	}
 	let mut gcd_variable = gcd(numbers[0], numbers[1]);
 	let mut product = numbers[0] * numbers[1];
 	if gcd_variable == 0 {
 		gcd_variable = 1;
 	}
 	let mut result = product / gcd_variable;
-	for i in 2..numbers.len() {
+	for i in 2..length {
 		gcd_variable = gcd(result, numbers[i]);
 		product = result * numbers[i];
 		if gcd_variable == 0 {
