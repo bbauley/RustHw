@@ -37,7 +37,7 @@ fn product(numbers: &Vec<u64>) -> u64 {
 	product
 }
 
-//Returns the greatest common divisor of all of the values inside of the vector
+//Returns the greatest common divisor from a vector of integers
 fn gcd_wrapper(numbers: &Vec<u64>) -> u64 {
 	let mut result = gcd(numbers[0], numbers[1]);
 	for i in 2..numbers.len() {
@@ -63,10 +63,23 @@ fn gcd(mut n: u64, mut m: u64) -> u64 {
 	n
 }
 
+//Returns the least common multiple of all integers in a vector
 fn lcm(numbers: &Vec<u64>) -> u64 {
-
-
-	0
+	let mut gcd_variable = gcd(numbers[0], numbers[1]);
+	let mut product = numbers[0] * numbers[1];
+	if gcd_variable == 0 {
+		gcd_variable = 1;
+	}
+	let mut result = product / gcd_variable;
+	for i in 2..numbers.len() {
+		gcd_variable = gcd(result, numbers[i]);
+		product = result * numbers[i];
+		if gcd_variable == 0 {
+			gcd_variable = 1;
+		}
+		result = product / gcd_variable;
+	}
+	result
 }
 
 fn main() {
@@ -86,8 +99,8 @@ fn main() {
 	}
 
 	let operation = env::args().nth(1);
-	let temp = operation.unwrap(); 	//These two lines convert an Option<String> type
-	let value = temp.as_str();		 	// 						into a str type
+	let temp = operation.unwrap_or("None".to_string()); //These two lines convert an Option<String> type
+	let value = temp.as_str();		 											// 						into a str type
 	let result = {
 		match value {
 			"sum" 	  => sum(&numbers), 
@@ -102,8 +115,19 @@ fn main() {
 			}	
 		}
 	};
-
 	println!("{:?}", numbers);
 	println!("{} is {:?}", value, result);
-
 }
+
+#[test]
+fn test_sum() {
+	let mut var = Vec::new();
+	var.push(10);
+	var.push(20);
+	var.push(30);
+	var.push(400);
+	assert_eq!(sum(&var), 460);
+	var.pop();
+	assert_eq!(sum(&var), 60);
+}
+
